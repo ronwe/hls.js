@@ -50,6 +50,24 @@ const distPlugins = commonPlugins.concat([
   })
 ]);
 
+let lightDistAliases = {};
+
+if (!process.env.SUBTITLE) {
+  lightDistAliases = Object.assign({}, lightDistAliases, {
+    './utils/cues': './empty.js',
+    './controller/timeline-controller': './empty.js',
+    './controller/subtitle-track-controller': './empty.js',
+    './controller/subtitle-stream-controller': './empty.js'
+  });
+}
+
+if (!process.env.ALT_AUDIO) {
+  lightDistAliases = Object.assign({}, lightDistAliases, {
+    './controller/audio-track-controller': './empty.js',
+    './controller/audio-stream-controller': './empty.js'
+  });
+}
+
 const multiConfig = [
   {
     name: 'debug',
@@ -92,14 +110,7 @@ const multiConfig = [
       libraryExport: 'default'
     },
     resolve: {
-      alias: {
-        './controller/audio-track-controller': './empty.js',
-        './controller/audio-stream-controller': './empty.js',
-        './utils/cues': './empty.js',
-        './controller/timeline-controller': './empty.js',
-        './controller/subtitle-track-controller': './empty.js',
-        './controller/subtitle-stream-controller': './empty.js'
-      }
+      alias: lightDistAliases
     },
     plugins: commonPlugins,
     devtool: 'source-map'
@@ -116,14 +127,7 @@ const multiConfig = [
       libraryExport: 'default'
     },
     resolve: {
-      alias: {
-        './controller/audio-track-controller': './empty.js',
-        './controller/audio-stream-controller': './empty.js',
-        './utils/cues': './empty.js',
-        './controller/timeline-controller': './empty.js',
-        './controller/subtitle-track-controller': './empty.js',
-        './controller/subtitle-stream-controller': './empty.js'
-      }
+      alias: lightDistAliases
     },
     plugins: distPlugins
   }
