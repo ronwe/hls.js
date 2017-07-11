@@ -3,8 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const buildConstants = {
-  __VERSION__: JSON.stringify(pkgJson.version),
-  __BUILD_VERSION__: process.env.BUILD_VERSION || 'full'
+  __VERSION__: JSON.stringify(pkgJson.version)
 };
 
 const uglifyJsOptions = {
