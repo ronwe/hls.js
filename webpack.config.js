@@ -14,7 +14,8 @@ const uglifyJsOptions = {
   },
   mangle: {
     toplevel: true,
-    eval: true
+    eval: true,
+    props: {regex : /^_/}
   }
 };
 
